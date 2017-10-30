@@ -41,6 +41,9 @@ import static org.eclipse.milo.opcua.sdk.server.api.config.OpcUaServerConfig.USE
 
 public class TestServer {
 
+    /**
+     * Starts the OPC UA Server
+     */
     public void start(){
         try {
             server.startup().get();
@@ -49,6 +52,9 @@ public class TestServer {
         }
     }
 
+    /**
+     * Stops the OPC UA Server
+     */
     public void stop(){
         try {
             server.shutdown().get();
@@ -59,6 +65,11 @@ public class TestServer {
 
     private final OpcUaServer server;
 
+    /**
+     * Creates the OPC UA Server that will listen on the specified port
+     * @param port The port that the OPC server will listen on
+     * @throws Exception Will be thrown if there is an error configuring the OPC UA server
+     */
     public TestServer(int port) throws Exception {
         CryptoRestrictions.remove();
 

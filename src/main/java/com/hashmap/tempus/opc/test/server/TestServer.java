@@ -70,7 +70,7 @@ public class TestServer {
      * @param port The port that the OPC server will listen on
      * @throws Exception Will be thrown if there is an error configuring the OPC UA server
      */
-    public TestServer(int port) throws Exception {
+    public TestServer(int port, String user, String pass) throws Exception {
         CryptoRestrictions.remove();
 
         KeyStoreLoader loader = new KeyStoreLoader().load();
@@ -93,10 +93,9 @@ public class TestServer {
                 String username = authChallenge.getUsername();
                 String password = authChallenge.getPassword();
 
-                boolean userOk = "user".equals(username) && "password1".equals(password);
-                boolean adminOk = "admin".equals(username) && "password2".equals(password);
+                boolean userOk = user.equals(username) && pass.equals(password);
             
-                return userOk || adminOk;
+                return userOk;
             }
         );
 
